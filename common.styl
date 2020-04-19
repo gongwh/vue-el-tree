@@ -1,0 +1,131 @@
+@import '../../views/common.styl'
+
+body
+  .popper-select-tree
+    .operation-block
+      float right
+      margin-top 4px
+  .el-tree-node__content
+    display inline-flex
+
+common-tree-node-height = 28px
+
+common-css()
+  .el-button
+    height common-tree-node-height - 4
+    width 20px
+    background-color unset
+    border unset
+    color black
+    padding 0 3px
+    &:hover
+      color highlight-text-color
+      box-shadow unset
+    & + .el-button
+      margin-left 4px
+    i
+      margin-bottom 19px
+      vertical-align middle
+      color #a6a5c1
+      &:hover
+        color hover-background-color
+  .el-input
+    .el-input__inner
+      height common-tree-node-height + 2
+      line-height common-tree-node-height + 2
+      font-size 16px
+      padding-left 6px
+
+.select-tree
+  width 100%
+  height 100%
+  overflow auto
+  > .el-tree
+    border none
+    margin-top 10px
+    padding-left 25px
+    max-height 200px
+    overflow auto
+    .el-tree__empty-block
+      margin-left -13px
+    .el-tree-node
+      position relative
+      margin 2px 0
+      .el-tree-node__content
+        height common-tree-node-height
+        line-height common-tree-node-height
+        padding unset !important
+        .el-tree-node__expand-icon
+          display none
+        .slot-t-node
+          position relative
+          common-css()
+          span
+            display inline-block
+          .slot-t-node--label
+            padding 0 8px
+            border-radius 5px
+            &.disabled
+              cursor not-allowed
+          .slot-t-icons
+            margin-left 10px
+            font-weight 600
+          .icon-expand
+            display inline-block
+            position absolute
+            left -48px
+            bottom 1.5px
+            img
+              vertical-align middle
+              height 18px
+        &:hover
+          background-color unset
+          .slot-t-node--label
+            background-color hover-other-background-color
+            color hover-other-text-color
+      .el-tree-node__children
+        overflow unset
+        padding-left 30px
+    &.not-filtered
+      .el-tree-node
+        .el-tree-node__children
+          > .el-tree-node
+            &:not(:last-child)
+              &::before
+                position absolute
+                left -17px
+                top 21px
+                width 1px
+                height calc(100% - 11px)
+                border-left 1px dashed #d1d1d1
+                content ' '
+    .is-current
+      & > .el-tree-node__content
+        background-color unset
+        .slot-t-node--label
+          background-color active-background-color
+          color active-text-color
+      &:hover
+        & > .el-tree-node__content
+          background-color unset
+          .slot-t-node--label
+            background-color active-background-color
+            color active-text-color
+
+  &.single-select-tree
+    > .el-tree
+      padding-left 30px
+      .el-tree-node
+        .el-tree-node__content
+          .slot-t-node
+            .icon-expand
+              left -24px
+      &.not-filtered
+        .el-tree-node
+          .el-tree-node__children
+            > .el-tree-node
+              &:not(:last-child)
+                &::before
+                  left -15px
+.tree-select
+  display inline-block
